@@ -7,4 +7,6 @@ can track changes and review, consistent infra acroess all envs.
 CRUD - can check AWS services, inventory management
 
 Cost optimization
+Dependency management - automatic in terraform
 
+Reusable infra using terraform modules
