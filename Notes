@@ -19,3 +19,6 @@ terraform --version ->
 Terraform v1.14.5
 on darwin_arm64
 
+Now install aws cli v2 to connect to aws account and services and run aws configure
+
+Providers - AWS is our provider in our case.
