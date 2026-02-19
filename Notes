@@ -10,3 +10,12 @@ Cost optimization
 Dependency management - automatic in terraform
 
 Reusable infra using terraform modules
+
+Install terraform on mac -> 
+brew tap hashicorp/tap 
+brew install hashicorp/tap/terraform
+
+terraform --version ->
+Terraform v1.14.5
+on darwin_arm64
+
