@@ -1,0 +1,6 @@
+Day 30
+
+Terraform is Infrastructure as a code (IaaC) tool.
+Can connect to any platform, multicloud, has version control,  we can have history of our infra, easy to restore.
+can track changes and review, consistent infra acroess all envs.
+
