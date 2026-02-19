@@ -1,5 +1,8 @@
 # Day 30
 
+# aws configure should be given first after aws cli v2 is downloaded in our machine.
+
+
 resource "aws_instance" "example" {
   ami           = "ami-0220d79f3f480ecf5"
   instance_type = "t3.micro"
@@ -39,10 +42,8 @@ resource "aws_security_group" "allow-ttls" {
   }
 }
 
-
-
-# aws configure should be given first
+# to execute :
 # terraform init
 # terraform plan
-# terraform apply or  terraform apply -auto-approve
-# terraform destroy
+# terraform apply or terraform apply -auto-approve
+# terraform destroy  -auto-approve
