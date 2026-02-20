@@ -29,7 +29,7 @@ variable "ec2-tags" {
 
 variable "sg_name" {
   type    = string
-  default = "allow-all-terraform"
+  default = "allow-all-terraform-default"
 }
 
 variable "sg_description" {
