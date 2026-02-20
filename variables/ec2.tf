@@ -27,7 +27,7 @@ resource "aws_security_group" "allow-ttls" {
     from_port        = var.sg_from_port
     to_port          = var.sg_to_port
     protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = var.cidr_blocks
     ipv6_cidr_blocks = ["::/0"]
   }
 
