@@ -6,7 +6,7 @@ sg_name= "allow-all-terraform-tfvars"
 # terraform variables precedence:
 # 1)First it will take from command line args -> give terraform plan -var="sg_name"="allow-all-from-cmd-line"
 
-# 2)Now give terraform plan and next it will next take from terraform.tfvars file
+# 2)Now give terraform plan and next it will take from terraform.tfvars file
 
 # 3) Now comment sg_name from terraform.tfvars file and give export TF_VAR_sg_name="allow-all-env-variables" and give terraform plan
 #  and next it will take from env variables

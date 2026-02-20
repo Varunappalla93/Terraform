@@ -1,22 +1,21 @@
-# Day 30
+# Day 31
 
-# aws configure should be given first after aws cli v2 is downloaded in our machine.
-
-
-resource "aws_instance" "example" {
-  ami           = "ami-0220d79f3f480ecf5"
-  instance_type = "t3.micro"
+# create ec2 instances
+resource "aws_instance" "loops" {
+  count                  = length(var.instances)
+  ami                    = "ami-0220d79f3f480ecf5"
+  instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.allow-ttls.id]
 
   tags = {
-    Name    = "terraform"
+    Name    = var.instances[count.index]
     Project = "Roboshop"
   }
 }
 
-
+# create sg and attach to ec2 instance
 resource "aws_security_group" "allow-ttls" {
-  name        = "allow-all-terraform" # this is for AWS account
+  name        = "allow-all-roboshop" # this is for AWS account
   description = "Allow all inbound and outbound traffic"
 
 
@@ -41,10 +40,3 @@ resource "aws_security_group" "allow-ttls" {
 
   }
 }
-
-# to execute :
-# terraform init - downloads the infra
-# terraform plan - plans but does not create infra
-# terraform validate - to check syntax
-# terraform apply or terraform apply -auto-approve - creates the infra
-# terraform destroy -auto-approve - destroys the infra
