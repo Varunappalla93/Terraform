@@ -43,7 +43,7 @@ resource "aws_security_group" "allow-ttls" {
 }
 
 # to execute :
-# terraform init
-# terraform plan
-# terraform apply or terraform apply -auto-approve
-# terraform destroy  -auto-approve
+# terraform init - downloads the infra
+# terraform plan - plans but does not create infra
+# terraform apply or terraform apply -auto-approve - creates the infra
+# terraform destroy  -auto-approve - destroys the infra
