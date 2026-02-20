@@ -1,6 +1,10 @@
 # Day 31
 
-# variables
+# conditions
+
+variable "environment" {
+  default = "dev"
+}
 
 variable "ami_id" {
   type        = string
