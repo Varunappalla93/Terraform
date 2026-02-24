@@ -59,4 +59,4 @@ versions should ne enabled and data replication should be done another bucket
 locals are like variables with extra capabilities
 
 Provisioners - to take actions or run scripts before or after the task, they only execute while creation or destroy, but not
-at updating of resources.
+at updating of resources , used to call ansible playbooks
