@@ -24,6 +24,5 @@ data "aws_ami" "joindevops" {
 
 # to get instance id and its state
 data "aws_instance" "terraform_instance" {
-    instance_state= ["running"]
     instance_id = "i-0e9b37fcfbd0430bb"
 }
