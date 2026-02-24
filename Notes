@@ -22,3 +22,41 @@ on darwin_arm64
 Now install aws cli v2 to connect to aws account and services and run aws configure
 
 Providers - AWS is our provider in our case.
+
+count based loops are for list -> count.index
+for based loop for set -> set or map -> each.key and each.value
+dynamic block - we get special variable with block name, eg: ingress
+data source - query the provider for existing information
+
+state - terraform tracks what it had created in state file, it is like memory to terraform.
+
+.tf files  - declarative based infra
+
+actual infra - what is actually created inside provider
+
+desired infra - what terraform created
+
+actual infra = desired infra
+
+terraform creates resources in provider and stores in terraform.tfstate file
+
+if terraform apply -auto-approve is given again and if its state file is matching with actual infra, no changes are applied
+
+one previous state backup file will be available, i.e. .terraform.tfstate.backup file
+
+state file is locked by terraform when we perform terraform actions
+
+terraform.tf files is for us
+state file is for terraform
+
+In Collaboration env, state should be stored in remote like s3 bucket, so we can prevent errors and duplicated,
+it should be locked and parallel modifications should not be allowed.
+
+No one should not have access to delete terraform remote state file except terraform
+
+versions should ne enabled and data replication should be done another bucket
+
+locals are like variables with extra capabilities
+
+Provisioners - to take actions or run scripts before or after the task, they only execute while creation or destroy, but not
+at updating of resources.
