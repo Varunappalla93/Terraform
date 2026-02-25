@@ -1,5 +1,3 @@
-Day 30
-
 Terraform is Infrastructure as a code (IaaC) tool.
 Can connect to any platform, multicloud, has version control,  we can have history of our infra, easy to restore.
 can track changes and review, consistent infra acroess all envs.
@@ -60,3 +58,57 @@ locals are like variables with extra capabilities
 
 Provisioners - to take actions or run scripts before or after the task, they only execute while creation or destroy, but not
 at updating of resources , used to call ansible playbooks
+
+
+To create multiple envs - we can use terraform workspaces, terraform wil give us a special variable called terraform.workspace
+or using .tfvars or using separate repos.
+
+using terraform workspaces:
+give "terraform workspace" to see its options:
+  new, list, show, select and delete Terraform workspaces.
+
+Subcommands:
+    delete    Delete a workspace
+    list      List Workspaces
+    new       Create a new workspace
+    select    Select a workspace
+    show      Show the name of the current workspace
+
+
+we must do terraform init before giving workspace commands.
+
+terraform workspace list -> has only default workspace for now
+
+terraform workspace new dev -> to create new workspace dev
+
+terraform workspace new prod -> to create new workspace prod
+
+terraform workspace list -> now its switched to prod
+
+Advantages -> same code, consistent envs.
+Disadvantage -> Since code is same, changes will be applied to prod env also.
+
+
+using tf vars:
+terraform init -backend-config=dev/backend.tf -> to configure dev env instance using tf vars
+
+terraform init -reconfigure -backend-config=prod/backend.tf  -> to reconfigure prod env instance using tf vars
+
+terraform plan -var-file=dev/terraform.tfvars -> to plan dev env instance using tf vars
+
+terraform apply -auto-approve -var-file=dev/terraform.tfvars  -> to apply dev env instance using tf vars
+
+terraform destroy -var-file=dev/terraform.tfvars -auto-approve  -> to destroy dev env instance using tf vars
+
+Advantages -> same code, consistent envs.
+Disadvantage -> Since code is same, changes will be applied to prod env also.
+
+
+using separate repos: eg: terrafofm-ec2-dev, terraform-ec2-prod
+
+Advantages -> clear isolation between envs, blast isolation is zero, separate state
+Disadvantage -> code repetition
+
+Terraform Modules -> Earlier we used terraform workspace or tfvars , but it was difficult to manage, hence we moved to 
+terraform modules (Similar to functions), so that we can use same code , and it is easy to maintain.
+
