@@ -112,3 +112,50 @@ Disadvantage -> code repetition
 Terraform Modules -> Earlier we used terraform workspace or tfvars , but it was difficult to manage, hence we moved to 
 terraform modules (Similar to functions), so that we can use same code , and it is easy to maintain.
 
+
+VPC - it is like a data center where we can create resources to our project in isolated space.
+
+Subnets:
+A subnet (subnetwork) is a logical subdivision of an IP network, used to improve performance, security, 
+and manageability by dividing large networks into smaller, more efficient, and organized segments. It enables 
+faster data routing by reducing unnecessary traffic, often using a subnet mask to split IP addresses into network and host components.
+
+Public subnets have direct, two-way routing to the internet via an Internet Gateway (IGW), making them ideal for web servers and
+public-facing resources. Private subnets lack a direct internet route, shielding internal resources like databases from the internet, 
+and usually require a NAT Gateway for outbound internet access.
+
+Public: Web servers, Load Balancers, Bastion hosts.
+Private: Databases, application servers, backend services, internal data.
+
+An Internet Gateway is a bidirectional, free component allowing public, direct internet access (inbound and outbound) 
+to resources with public IPs. 
+
+A NAT Gateway is a chargeable service allowing only outbound internet access for private instances, 
+securing them from unsolicited inbound connections.
+
+IGW is attached to a VPC for public subnets; NGW is placed in a public subnet to serve instances in a private subnet.
+
+Internet Gateway: Use for web servers, public-facing applications, or services requiring incoming traffic from the internet.
+NAT Gateway: Use when you have private instances (like application servers or databases) 
+that need to download patches or connect to third-party APIs without being exposed to the public.
+
+Private instances often use a NAT Gateway to send traffic, which then passes through the Internet Gateway to reach the internet.
+
+IP address - IPv4 - 32 bits.
+
+varies from 0.0.0.0 to 255.255.255.255
+
+IP address : network + host 
+eg: 10.0.0.0/16 -> 16 bits are reserved for network, 16 for host/server.
+2^16 -> 65,536 IP address are possible.
+
+
+Classless Inter-Domain Routing (CIDR) is a method for allocating IP addresses and routing packets efficiently,
+replacing the older, rigid system of Class A, B, and C networks. It uses a slash notation to define a network prefix, 
+allowing for flexible, custom-sized subnets and reducing IPv4 address waste.
+
+AWS range - 16 to 28 CIDR.
+
+10.0.0.0/16 -> VPC CIDR 
+10.0.0.0/24 -> subnets , 8 bits-> 256 subnets, each subnet can have 2^8 IP addressess.
+
