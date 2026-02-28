@@ -159,3 +159,59 @@ AWS range - 16 to 28 CIDR.
 10.0.0.0/16 -> VPC CIDR 
 10.0.0.0/24 -> subnets , 8 bits-> 256 subnets, each subnet can have 2^8 IP addressess.
 
+Create VPC and create internet gateway and attach internet gateway to create VPC eg: roboshop.
+
+Now under our created VPC, we need to create subnets:
+Now create 1 public subnet for 1 Availablity Zone, eg: us-east-1a
+eg: 10.0.1.0/24 subnet for 10.0.0.0/16 CIDR, i.e. VPC
+
+we can create another public subnet for another availablity zone,  eg: us-east-1b
+eg: 10.0.2.0/24 subnet for 10.0.0.0/16 CIDR, i.e. VPC
+
+
+we can create another private subnet for another availablity zone, and for another AZ as well
+eg: 10.0.11.0/24 subnet for 10.0.0.0/16 CIDR, i.e. VPC
+
+
+we can create another DB subnet for another availablity zone and for another AZ as well
+eg: 10.0.21.0/24 subnet for 10.0.0.0/16 CIDR, i.e. VPC
+
+Now under our created VPC, we need to create route table.
+Now we need to attach respective subnets to route tables via Edit subnet associations
+eg: roboshop-public-us-east-1a and roboshop-public-us-east-1b to created route table, ie. roboshop-public-routetable
+
+now for created public route table, eg:roboshop-public-routetable, under routes - we need to attach our created internet gateway and give destination as 0.0.0.0 for access to internet through internet gateway, i.e. now both created public subnets have internet access through internet gateway.
+
+Same for private route table:
+create one private route table and attach respective subnets but we should not give internet access to private route table.
+
+Same for DB route table:
+create one DB route table and attach respective subnets but we should not give internet access to DB route table.
+
+Overview:
+AWS Account - VPC(AZ1, AZ2) - Subnets 
+
+ingress - Incoming traffic comes to servers
+egress - outgoing traffic/data going out from servers/VPC
+
+eg: dnf install mysql -y -> outgoing/egress traffic
+
+NAT gateway - if the nstances in private subnet /DB subnet wants to connect to internet to dowload or upload packages, they should go via NAT gateway,
+NAT gateway allows only outbound traffic.
+
+Elastic IP/Static IP is mandatory to create NAT gateway.
+
+Create/Allocate one Elastic IP address to any AZ, eg: us-east-1a 
+
+Now create one NAT gateway -> select AZ as zonal and select respective created subnet
+eg: roboshop-public-us-east-1a for NAT gateway to be created only in that public subnet, but in real projects, select regional and select created VPC, and then NAT getway will be created in all public subnets.
+
+Also select public as connectivity type and select Manual method as Elastic IP and select created elastic ip address.
+
+
+Now for private route table , under routes edit and add route and give destination as 0.0.0.0 and target as NAT gateway and select our
+respective NAT gateway.
+
+Now for DB route table , under routes edit and add route and give destination as 0.0.0.0 and target as NAT gateway and select our
+respective NAT gateway.
+
