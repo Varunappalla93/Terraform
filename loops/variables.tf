@@ -2,7 +2,7 @@
 
 variable "instances" {
   type    = list(any)
-  default = ["mongodb", "redis", "mysql", "rabbitmq", "catalogue", "user", "shipping", "payment", "frontend"]
+  default = ["mongodb", "redis", "mysql", "rabbitmq", "catalogue", "user", "shipping", "payment", "frontend","cart"]
 }
 
 
