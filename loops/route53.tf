@@ -8,6 +8,7 @@ resource "aws_route53_record" "www" {
   type    = "A"
   ttl     = 1
   records = [aws_instance.loops[count.index].private_ip]
+  allow_overwrite = true
 }
 
 # roboshop.vardevops.online -> maps to public ip address using index function
