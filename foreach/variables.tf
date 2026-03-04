@@ -4,6 +4,7 @@
 variable "instances" {
   type = map
   default = {
+    frontend = "t3.micro" 
     mongodb = "t3.micro"
     redis     = "t3.micro"
     mysql     = "t3.small"

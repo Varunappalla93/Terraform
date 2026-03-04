@@ -4,7 +4,7 @@ resource "aws_instance" "example" {
 # for_each = var.instances # for map
 for_each= toset(var.instances2) # for list to set
   ami           = "ami-0220d79f3f480ecf5"
-  instance_type = "t3.micro"        # each.value for list
+  instance_type = "t3.micro"        # each.value for map
   vpc_security_group_ids = [aws_security_group.allow-ttls.id]
 
   tags = {
