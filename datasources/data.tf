@@ -2,9 +2,10 @@
 
 # to query existing info from provider
 
-data "aws_ami" "joindevops" {
-  most_recent      = true
-  owners           = ["973714476881"]
+data "aws_ami" "join-devops" {
+  most_recent = true
+  owners      = ["973714476881"]
+
 
   filter {
     name   = "name"
@@ -23,6 +24,14 @@ data "aws_ami" "joindevops" {
 }
 
 # to get instance id and its state
-data "aws_instance" "terraform_instance" {
-    instance_id = "i-0e9b37fcfbd0430bb"
+data "aws_instance" "tf-instance" {
+  filter {
+    name   = "tag:Name"
+    values = ["terraform"]
+  }
+
+  filter {
+    name   = "instance-state-name"
+    values = ["running"]
+  }
 }
